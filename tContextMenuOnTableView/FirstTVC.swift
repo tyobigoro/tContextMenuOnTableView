@@ -25,7 +25,7 @@ enum EditPurpose {
 class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
-    var contentsNames: [String] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]
+    var contentsNames: [String] = ["A", "B", "C", "D", "E", "F", "G", "H"]
     
     @IBOutlet weak var tTableView: UITableView!
     
