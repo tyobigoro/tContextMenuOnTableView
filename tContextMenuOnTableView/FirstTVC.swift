@@ -25,8 +25,9 @@ enum EditPurpose {
 class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
-    let contentsNames: [String] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]
+    var contentsNames: [String] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]
     
+    @IBOutlet weak var tTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +48,20 @@ class FirstVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         switch from.editPurpse {
         case .create:
+            
             print("新規作成から戻ってきたよ")
+            
+            contentsNames.append("newItem")
+            tTableView.insertRows(at: [IndexPath(row: contentsNames.count - 1, section: 0)], with: .automatic)
+            
         case .edit  :
+            
             print("編集から戻ってきたよ")
+            
+            if let indexPath = tTableView.indexPathForSelectedRow {
+                contentsNames[indexPath.row] = "edited"
+                tTableView.reloadRows(at: [indexPath], with: .automatic)
+            }
         default:
             fatalError("ここはとおらない")
         }
